@@ -2,7 +2,7 @@ from langchain_core.tools import tool
 from geopy.geocoders import Nominatim
 from geopy.distance import geodesic
 
-# Initialize the Geocoder (Unique user_agent is required by Nominatim)
+
 geolocator = Nominatim(user_agent="routepilot_ai_agent")
 
 @tool
