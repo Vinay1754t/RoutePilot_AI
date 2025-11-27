@@ -4,7 +4,7 @@
 
 It utilizes **LangChain** and **Google Gemini 1.5 Flash** to autonomously use tools for live weather checking, currency conversion, distance calculation, and visual travel mapping.
 
-![RoutePilot Interface](app_preview.png)
+![RoutePilot Interface](app_preview.png.png)
 
 ---
 
