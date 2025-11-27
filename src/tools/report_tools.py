@@ -25,11 +25,9 @@ def generate_itinerary_pdf(itinerary_text: str):
         pdf.add_page()
         pdf.set_font("Arial", size=12)
         
-        # Handle unicode roughly for hackathon speed (Latin-1)
         safe_text = itinerary_text.encode('latin-1', 'replace').decode('latin-1')
         pdf.multi_cell(0, 10, safe_text)
         
-        # Save to temp
         filename = "itinerary.pdf"
         temp_dir = tempfile.gettempdir()
         file_path = os.path.join(temp_dir, filename)
