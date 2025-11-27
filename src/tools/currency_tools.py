@@ -12,7 +12,7 @@ def convert_currency(amount: float, from_currency: str, to_currency: str):
     if not api_key:
         return "Error: ExchangeRate API Key is missing."
     
-    # Using ExchangeRate-API Standard Endpoint
+    # Using ExchangeRate-API 
     url = f"https://v6.exchangerate-api.com/v6/{api_key}/pair/{from_currency}/{to_currency}/{amount}"
     
     try:
