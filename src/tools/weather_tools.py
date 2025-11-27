@@ -1,9 +1,5 @@
 import requests
 from langchain_core.tools import tool
-
-# You can hardcode keys for testing, but better to pass them via the agent or environment.
-# For this setup, we will assume the agent passes the key or we set it globally in app.py
-# But to keep tools pure, we'll fetch from os.environ inside the function.
 import os
 
 @tool
