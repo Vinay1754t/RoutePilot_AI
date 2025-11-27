@@ -4,8 +4,10 @@
 
 It utilizes **LangChain** and **Google Gemini 2.5 Flash** to autonomously use tools for live weather checking, currency conversion, distance calculation, and visual travel mapping.
 
-![Project Screenshot](link_to_your_screenshot_here.png)
-*(Upload your screenshots to the repo and link them here)*
+![RoutePilot Interface](app_preview.png)
+
+### 📄 Sample Output
+[Click here to view a generated Trip PDF](file:///C:/Users/Vinay%20Wankhade/OneDrive/Desktop/RoutePilot_Ai/RoutePilot_Itinerary.pdf)
 
 ---
 
