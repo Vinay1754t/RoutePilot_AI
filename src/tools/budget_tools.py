@@ -9,14 +9,12 @@ def estimate_local_costs(city: str, travel_style: str, duration_days: int):
     - travel_style: 'Budget Backpacker', 'Luxury/Comfort', or 'Adventure/Nature'
     - duration_days: Number of days of the trip
     """
-    # Base rates per day (USD approximate)
     base_rates = {
         "Budget Backpacker": 40,
         "Adventure/Nature": 80,
         "Luxury/Comfort": 200
     }
     
-    # Multiplier logic for expensive cities (Agent can infer this, but we hardcode a few popular ones or keep generic)
     expensive_cities = ["Paris", "New York", "London", "Zurich", "Tokyo", "Dubai"]
     multiplier = 1.5 if city in expensive_cities else 1.0
     
