@@ -1,8 +1,8 @@
-# ✈️ RoutePilot_AI: Your Intelligent Travel Agent
+# ✈️ RoutePilot_AI: Agentic Travel Planner
 
 **RoutePilot_AI** is a next-generation travel planning assistant powered by **Agentic AI**. Unlike standard chatbots, RoutePilot doesn't just "talk" — it **thinks, plans, and executes**.
 
-It utilizes **LangChain** and **Google Gemini 1.5 Flash** to autonomously use tools for live weather checking, currency conversion, distance calculation, and visual travel mapping.
+It utilizes **LangChain** and **Google Gemini 2.5 Flash** to autonomously use tools for live weather checking, currency conversion, distance calculation, and visual travel mapping.
 
 ![RoutePilot Interface](app_preview.png.png)
 
@@ -21,7 +21,7 @@ It utilizes **LangChain** and **Google Gemini 1.5 Flash** to autonomously use to
 
 ## 🛠️ Tech Stack & Architecture
 
-* **LLM:** Google Gemini 1.5 Flash (via `langchain-google-genai`)
+* **LLM:** Google Gemini 2.5 Flash (via `langchain-google-genai`)
 * **Orchestration:** LangChain (Agents & Tool Calling)
 * **Frontend:** Streamlit
 * **Tools:** * `Tavily Search API` (Web Browsing)
