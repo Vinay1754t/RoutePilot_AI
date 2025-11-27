@@ -1,13 +1,10 @@
-# ✈️ RoutePilot_AI: Agentic Travel Planner
+# ✈️ RoutePilot_AI: Your Intelligent Travel Agent
 
 **RoutePilot_AI** is a next-generation travel planning assistant powered by **Agentic AI**. Unlike standard chatbots, RoutePilot doesn't just "talk" — it **thinks, plans, and executes**.
 
-It utilizes **LangChain** and **Google Gemini 2.5 Flash** to autonomously use tools for live weather checking, currency conversion, distance calculation, and visual travel mapping.
+It utilizes **LangChain** and **Google Gemini 1.5 Flash** to autonomously use tools for live weather checking, currency conversion, distance calculation, and visual travel mapping.
 
 ![RoutePilot Interface](app_preview.png)
-
-### 📄 Sample Output
-[Click here to view a generated Trip PDF](file:///C:/Users/Vinay%20Wankhade/OneDrive/Desktop/RoutePilot_Ai/RoutePilot_Itinerary.pdf)
 
 ---
 
@@ -24,7 +21,7 @@ It utilizes **LangChain** and **Google Gemini 2.5 Flash** to autonomously use to
 
 ## 🛠️ Tech Stack & Architecture
 
-* **LLM:** Google Gemini 2.5 Flash (via `langchain-google-genai`)
+* **LLM:** Google Gemini 1.5 Flash (via `langchain-google-genai`)
 * **Orchestration:** LangChain (Agents & Tool Calling)
 * **Frontend:** Streamlit
 * **Tools:** * `Tavily Search API` (Web Browsing)
@@ -39,15 +36,14 @@ It utilizes **LangChain** and **Google Gemini 2.5 Flash** to autonomously use to
 
 1.  **Clone the Repository**
     ```bash
-    git clone [https://github.com/Vinay1754t/RoutePilot_AI.git](https://github.com/Vinay1754t/RoutePilot_AI.git)
+    git clone [https://github.com/vinay1754t/RoutePilot_AI.git](https://github.com/vinay1754t/RoutePilot_AI.git)
     cd RoutePilot_AI
     ```
 
 2.  **Create a Virtual Environment**
     ```bash
     python -m venv venv
-    source venv/bin/activate  
-    On Windows use: venv\Scripts\activate
+    source venv/bin/activate  # On Windows use: venv\Scripts\activate
     ```
 
 3.  **Install Dependencies**
@@ -66,20 +62,17 @@ It utilizes **LangChain** and **Google Gemini 2.5 Flash** to autonomously use to
 
 ---
 
-## 📂 Project Structure
+## 🤖 How It Works (The Agentic Loop)
 
-```bash
-RoutePilot_AI/
-├── src/
-│   ├── agents/
-│   │   └── main_agent.py    # The Brain: Agent definition and prompt logic
-│   └── tools/
-│       ├── geo_tools.py     # Distance & Coordinate logic
-│       ├── map_tools.py     # Folium Map generation
-│       ├── weather_tools.py # OpenWeather API wrapper
-│       ├── budget_tools.py  # Mathematical estimation logic
-│       └── currency_tools.py # Real-time exchange rates
-│       └── report_tools.py  #PDF Generation
-├── app.py                   # Main Streamlit Interface
-├── requirements.txt         # Project dependencies
-└── README.md                # Documentation
+1.  **User Input:** "Plan a trip from Frankfurt to Manali."
+2.  **Thought Process:** The Agent breaks this down -> *Get coords -> Calc distance -> Check weather -> Search hotels -> Make map*.
+3.  **Tool Execution:** It calls Python functions (`get_coordinates`, `generate_trip_map`, etc.) sequentially.
+4.  **Final Response:** Synthesizes data into a structured itinerary with a UI map and PDF download option.
+
+---
+
+## 🙌 Acknowledgments
+
+* **Google GenAI** for the Gemini Model.
+* **LangChain** for the Agent framework.
+* **Streamlit** for the amazing Python-native UI.
