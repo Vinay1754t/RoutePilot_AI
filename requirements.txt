@@ -1,8 +1,9 @@
 streamlit
-langchain
-langchain-community
-langchain-core
-langchain-google-genai
+pydantic>=2.0
+langchain>=0.2.0
+langchain-community>=0.2.0
+langchain-core>=0.2.0
+langchain-google-genai>=1.0.3
 google-generativeai
 geopy
 folium
