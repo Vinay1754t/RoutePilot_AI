@@ -18,13 +18,12 @@ def get_agent():
     They are read directly from os.environ for safety and Pydantic compatibility.
     """
     
-    # 1. Initialize LLM (Auto-finds GOOGLE_API_KEY in env)
     llm = ChatGoogleGenerativeAI(
         model="gemini-1.5-flash", 
         temperature=0.6
     )
 
-    # 2. Define Tools (Auto-finds TAVILY_API_KEY in env)
+
     search_tool = TavilySearchResults(max_results=3) 
     
     tools = [
@@ -38,7 +37,7 @@ def get_agent():
         generate_trip_map 
     ]
 
-    # 3. System Prompt
+
     prompt = ChatPromptTemplate.from_messages([
         ("system", 
          """You are RoutePilot_AI, an elite travel planner.
@@ -62,7 +61,6 @@ def get_agent():
         ("placeholder", "{agent_scratchpad}"),
     ])
 
-    # 4. Create Agent
     agent = create_tool_calling_agent(llm, tools, prompt)
     agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True, handle_parsing_errors=True)
 
