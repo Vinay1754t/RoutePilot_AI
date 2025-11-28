@@ -3,6 +3,7 @@ from langchain.agents import AgentExecutor, create_tool_calling_agent
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_community.tools.tavily_search import TavilySearchResults
 
+# --- IMPORT TOOLS ---
 from src.tools.geo_tools import get_coordinates, calculate_distance
 from src.tools.budget_tools import estimate_local_costs
 from src.tools.report_tools import generate_itinerary_pdf
@@ -10,15 +11,21 @@ from src.tools.weather_tools import get_current_weather
 from src.tools.currency_tools import convert_currency
 from src.tools.map_tools import generate_trip_map
 
-def get_agent(gemini_api_key, tavily_api_key):
+def get_agent():
+    """
+    Constructs the Agent. 
+    Note: We do NOT pass API keys here anymore. 
+    They are read directly from os.environ for safety and Pydantic compatibility.
+    """
     
+    # 1. Initialize LLM (Auto-finds GOOGLE_API_KEY in env)
     llm = ChatGoogleGenerativeAI(
-        model="gemini-2.5-flash", 
-        temperature=0.6, # Slightly higher creativity for itineraries
-        google_api_key=gemini_api_key
+        model="gemini-1.5-flash", 
+        temperature=0.6
     )
 
-    search_tool = TavilySearchResults(max_results=3, tavily_api_key=tavily_api_key)
+    # 2. Define Tools (Auto-finds TAVILY_API_KEY in env)
+    search_tool = TavilySearchResults(max_results=3) 
     
     tools = [
         search_tool, 
@@ -31,7 +38,7 @@ def get_agent(gemini_api_key, tavily_api_key):
         generate_trip_map 
     ]
 
-
+    # 3. System Prompt
     prompt = ChatPromptTemplate.from_messages([
         ("system", 
          """You are RoutePilot_AI, an elite travel planner.
@@ -39,25 +46,23 @@ def get_agent(gemini_api_key, tavily_api_key):
          CORE INSTRUCTION:
          Your goal is to provide a COMPLETE TRAVEL PLAN. A plan is not complete without a Day-by-Day Itinerary.
          
-         EXECUTION FLOW (Follow this order):
+         EXECUTION FLOW:
          1. **Visuals:** Call 'generate_trip_map' if cities are known.
          2. **Data:** Check 'get_current_weather' and 'calculate_distance'.
-         3. **Planning (CRITICAL):** Generate a detailed Day-by-Day Itinerary (Morning/Afternoon/Evening) based on the user's Travel Style.
-         4. **Budget:** Estimate costs using 'estimate_local_costs' or your own knowledge for flights.
+         3. **Planning:** Generate a detailed Day-by-Day Itinerary.
+         4. **Budget:** Estimate costs.
          
          FORMATTING RULES:
-         - Start with "🌍 **Trip Overview**" (Map link, Weather, Distance).
-         - Then "📅 **Daily Itinerary**" (This is the most important part).
+         - Start with "🌍 **Trip Overview**".
+         - Then "📅 **Daily Itinerary**".
          - End with "💰 **Estimated Budget**".
-         
-         If a tool fails (like weather), IGNORE the error and proceed with the Itinerary anyway.
          """),
         ("placeholder", "{chat_history}"),
         ("human", "{input}"),
         ("placeholder", "{agent_scratchpad}"),
     ])
 
-
+    # 4. Create Agent
     agent = create_tool_calling_agent(llm, tools, prompt)
     agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True, handle_parsing_errors=True)
 
