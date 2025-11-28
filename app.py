@@ -93,7 +93,7 @@ if gemini_key and tavily_key:
         # 4. VISION LOGIC
         image_description = ""
         if uploaded_file:
-            vision_llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash", google_api_key=gemini_key)
+            vision_llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash", google_api_key=gemini_key)
             with st.spinner("Analyzing image..."):
                 bytes_data = uploaded_file.getvalue()
                 image_data = base64.b64encode(bytes_data).decode('utf-8')
